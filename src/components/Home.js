@@ -10,19 +10,42 @@ import {
   TableRow,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+import axios from "axios";
+import { useRef, useState } from "react";
 import cltechLogo from "../images/cltech.png";
 
 function Home() {
   const [patients, setPatients] = useState([]);
   const [message, setMessage] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const inputFile = useRef(null);
 
   function uploadTextData() {
     var newMessage = encodeURIComponent(message);
 
-    //Code for upload text
+    axios.post(
+      `https://laboratorio-lis-backend.herokuapp.com/api/v1/laboratory-lis?data=${newMessage}`
+    );
 
     setMessage("");
+  }
+
+  function changeHandler(event) {
+    setSelectedFile(event.target.files[0]);
+  }
+
+  function handleSubmission() {
+    const formData = new FormData();
+
+    formData.append("file", selectedFile);
+
+    axios.post(
+      "https://laboratorio-lis-backend.herokuapp.com/api/v1/laboratory-lis/upload-file",
+      formData,
+      { headers: {"Content-Type": "multipart/form-data"} }
+    );
+
+    inputFile.current.value = "";
   }
 
   return (
@@ -63,31 +86,14 @@ function Home() {
       <br />
       <Grid container columnSpacing={0.5} justifyContent="center">
         <Grid item>
-          <TextField type={"file"} inputProps={{ accept: "application/txt" }} />
+          <TextField type="file" inputRef={inputFile} onChange={changeHandler} />
         </Grid>
         <Grid item>
-          <Button variant="contained" style={{ padding: "15px 4px" }}>
+          <Button variant="contained" style={{ padding: "15px 4px" }} onClick={handleSubmission}>
             Subir Archivo
           </Button>
         </Grid>
       </Grid>
-      <br />
-      <br />
-      <TableContainer>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">ID</TableCell>
-              <TableCell align="center">Nombre</TableCell>
-              <TableCell align="center">Apellido</TableCell>
-              <TableCell align="center">Genero</TableCell>
-              <TableCell align="center">Fecha de Nacimiento</TableCell>
-              <TableCell align="center"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody></TableBody>
-        </Table>
-      </TableContainer>
     </div>
   );
 }
