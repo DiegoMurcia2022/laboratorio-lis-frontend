@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/Laboratorio-LIS/static/js/main.eb881c35.js",
-    "static/media/cltech.png": "/Laboratorio-LIS/static/media/cltech.c617b94c418706500945.png",
-    "index.html": "/Laboratorio-LIS/index.html",
-    "main.eb881c35.js.map": "/Laboratorio-LIS/static/js/main.eb881c35.js.map"
+    "main.js": "/laboratorio-lis-frontend/static/js/main.c8c16b05.js",
+    "static/media/cltech.png": "/laboratorio-lis-frontend/static/media/cltech.c617b94c418706500945.png",
+    "index.html": "/laboratorio-lis-frontend/index.html",
+    "main.c8c16b05.js.map": "/laboratorio-lis-frontend/static/js/main.c8c16b05.js.map"
   },
   "entrypoints": [
-    "static/js/main.eb881c35.js"
+    "static/js/main.c8c16b05.js"
   ]
 }
