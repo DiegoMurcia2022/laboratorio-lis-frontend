@@ -5,7 +5,7 @@ import Home from './components/Home';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/laboratorio-lis-frontend" element={<Home />} />
     </Routes>
   );
 }
